@@ -2,9 +2,9 @@
 
 
 In single-cell sequencing datasets, cells are often assigned meta data information (_e.g._, batch, sample ID, condition...). 
-scPropensity provides a score to evaluate whether there is any relationship between meta data assigment and molecular similarity across cells. It only requires a cell-cell similarity matrix and a label assignment, thus it is cluster-free.
+scPropensity is a global measure of the relationship between meta data assigment and molecular similarity across cells. 
 
-A notable application of scPropensity concerns the analysis of cancer clones: cells are assigned a clone identity, which may be inferred by copy-number profile, SNV, or the readout of lineage-tracing assays, and we may ask whether two clones have a more or less similar transcriptional profile than expected by chance. scPropensity computes a clone-clone transcriptional similarity, which can then be used to classify clones into distinct transcriptional groups. This has implications on the evaluation of the transcriptional heterogeneity of cancer clones, which is linked to their differentiation potential.
+scPropensity was applied to the analysis of cancer clones (see [[Nadalin _et al._]](https://doi.org/10.1101/2023.06.28.546923)): we asked whether two clones have a more or less similar transcriptional profile than expected by chance. Using scPropensity we computed a clone-clone transcriptional similarity, which we used to classify clones into distinct transcriptional groups (_lineages_) and evaluate their molecular heterogeneity.
 
 ## Description
 
@@ -15,7 +15,7 @@ In particular, pair propensity scores are derived from amino acid pairings at th
 Here, _x_ and _y_ are cell labels.
 A cell-cell similarity measure is derived from the assay (gene expression, chromatin accessiblity state...) and is used to build a _k_-nn graph, where nodes are cells and a directed edge connects cell _i_ with cell _j_ if and only if _j_ is one of the closest _k_ cells to _i_ according to this measure. 
 
-Hence, _F_(_x_,_y_) is the number of edges (_i_,_j_) in the _k_-nn graph such that _i_ is labelled with _x_ and _j_ is labelled with _j_; 
+_F_(_x_,_y_) is defined as the number of edges (_i_,_j_) in the _k_-nn graph such that _i_ is labelled with _x_ and _j_ is labelled with _j_; 
 _G_(_x_,_y_) is the expected number of edges labelled with (_x_,_y_) given the neighbourhood size _k_ and the number of cells labelled with _x_ and _y_, respectively  (see [[Nadalin _et al._]](https://doi.org/10.1101/2023.06.28.546923) for details).
 Therefore, _p_(_x_,_y_) tells whether cells labelled with _x_ tend to be more (> 1), less (< 1) or equally (= 1) similar to the cells labelled with _y_ than expected by chance. 
 
