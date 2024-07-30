@@ -34,7 +34,7 @@ To compute the pair propensity score on `object.Rds` with respect to `sample.nam
 scPropensity(object.file = "object.Rds", slot = "sample.name", outdir = "dir")
 ```
 
-The above function builds a _k_-nn graph, computes the pair propensities of the labels in `object@meta.data$sample.name` and creates a folder `dir` containing output files. It contains a _n_ x _n_ matrix _M_, where _n_ is the number of distict values in sample.name`, and _M_\[_x_,_y_\] is the log pair propensity of (_x_,_y_). It also contains the L2-normalised version of _M_.
+The above function builds a _k_-nn graph, computes the pair propensities of the labels in `object@meta.data$sample.name` and creates a folder `dir` containing output files. It contains a _n_ x _n_ matrix _M_, where _n_ is the number of distict values in `sample.name`, and _M_\[_x_,_y_\] is the log pair propensity of (_x_,_y_). It also contains the L2-normalised version of _M_.
 
 ## Citing
 
